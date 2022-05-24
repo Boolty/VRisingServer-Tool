@@ -31,7 +31,7 @@ def main():
     time.sleep(3)
     while True:
         if checkIfProcessRunning('VRisingServer'):
-            print('is runnuning...')
+            print('Server Running...')
             time.sleep(30)
         else:
             print('VRisingServer will not run...')
