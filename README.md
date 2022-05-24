@@ -1,7 +1,7 @@
 # VRisingServer-Tool
 VRisingServer Tool for auto restart 
 
-Check if Server started if not Start the VRisingServer.exe
+checks if the server is started and starts it if it crashes.
 
 You can run the .py or .exe
 
