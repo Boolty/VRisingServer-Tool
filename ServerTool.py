@@ -2,6 +2,7 @@ import psutil
 import time
 import os
 import ctypes
+import threading
 
 
 def checkIfProcessRunning(processName):
@@ -18,6 +19,11 @@ def checkIfProcessRunning(processName):
             pass
     return False;
 
+def launch():
+    print('Starting VRisingServer...')
+    os.system('VRisingServer.exe')
+    time.sleep(20)
+
 def main():
     print('Stop the Server tool with STRG+C')
     ctypes.windll.kernel32.SetConsoleTitleW("VRisingServerTool by Boolty")
@@ -28,10 +34,8 @@ def main():
             time.sleep(1)
         else:
             print('VRisingServer will not run...')
-            print('Starting VRisingServer...')
-            os.system('VRisingServer.exe')
-            time.sleep(20)
-
+            time.sleep(3)
+            threading.Thread(target=launch).start()  
 
 if __name__ == '__main__':
     main()
