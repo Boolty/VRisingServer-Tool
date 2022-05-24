@@ -21,6 +21,7 @@ def checkIfProcessRunning(processName):
 
 def launch():
     print('Starting VRisingServer...')
+    print('Version: 1.2')
     os.system('VRisingServer.exe')
     time.sleep(20)
 
@@ -31,11 +32,13 @@ def main():
     while True:
         if checkIfProcessRunning('VRisingServer'):
             print('is runnuning...')
-            time.sleep(1)
+            time.sleep(30)
         else:
             print('VRisingServer will not run...')
-            time.sleep(3)
+            print('Starting VRisingServer...')      
             threading.Thread(target=launch).start()  
+            time.sleep(10)
+
 
 if __name__ == '__main__':
     main()
