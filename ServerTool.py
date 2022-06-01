@@ -3,6 +3,7 @@ import time
 import os
 import ctypes
 import threading
+from datetime import datetime
 
 
 def checkIfProcessRunning(processName):
@@ -21,7 +22,7 @@ def checkIfProcessRunning(processName):
 
 def launch():
     print('Starting VRisingServer...')
-    print('Version: 1.2')
+    print('Version: 1.3')
     os.system('VRisingServer.exe')
     time.sleep(20)
 
@@ -29,10 +30,19 @@ def main():
     print('Stop the Server tool with STRG+C')
     ctypes.windll.kernel32.SetConsoleTitleW("VRisingServerTool by Boolty")
     time.sleep(3)
+    PROCNAME = 'VRisingServer.exe'
+    restart = '03:00'
     while True:
-        if checkIfProcessRunning('VRisingServer'):
-            print('Server Running...')
-            time.sleep(30)
+        if checkIfProcessRunning(PROCNAME):
+            now = datetime.now()
+            current_time = now.strftime("%H:%M")
+            print("Server Time:", current_time, ' | Server is running...')
+            if current_time == restart:
+                print('Process was killed...')
+                for proc in psutil.process_iter():
+                    if proc.name() == PROCNAME:
+                        proc.kill()
+            time.sleep(20)
         else:
             print('VRisingServer will not run...')
             print('Starting VRisingServer...')      
